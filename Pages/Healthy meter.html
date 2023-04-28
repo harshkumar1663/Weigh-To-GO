@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight to Go-Healthy Meter</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Varela+Round&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .sep-line{
+        height: 20px;
+    }
+    a {
+        text-decoration: none;
+        color : white;
+        font-family: 'Ubuntu', sans-serif;;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 20px;
+        transition: all 0.5s linear;
+        padding: 10px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    }
+    a:hover {
+        color: black;
+        background-color: white;
+        transition: all 0.5s linear;
+    }
+    .head{
+        position: relative;
+        background: radial-gradient(circle, rgba(0,0,0, 0.9) 0%, rgba(0,0,0,0.5) 100%) , url("../Images/food_head.jpg") ;
+        background-position: -20px -400px;
+        width: 100%;
+        height: 65vh;
+        background-size: cover;
+    }
+    .nav{
+        position: absolute  ;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 30px 0px;
+        width: 60vw;
+    }
+    .logo img{
+        position: absolute  ;
+        width: 300px;
+        height: 300px;
+        top: 22%;   
+        left: 50%;
+        transform: translate(-50%, 0%);
+        filter: brightness(110%);
+        filter: contrast(200%);
+    }
+    .container{
+        background: url("../meter_photos/meter_bg.jpg");
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+        background-size: cover;
+        font-family: "Varela Round";
+        font-size: 25px;
+        background-position: 0px -180px;
+        padding-top: 50px;;
+    }
+
+    #selectItem{
+        overflow-y: scroll;
+    }
+    .addItem{
+        margin-left: 20%;
+        height: 10%;
+        margin-bottom: 10px;
+    }
+    .plus{
+        border: 2px solid black;
+        border-radius: 1.25rem;
+        padding: 5px;
+        background-color: white;
+        color: black;
+        font-size: 30px;
+        transition: all 0.1s linear;
+
+    }
+    .plus:hover{
+        color: white;
+        background-color: black;
+        font-size: 40px;
+        transition: all 0.2s linear;
+    }
+    .window{
+        position: relative;
+        box-sizing: border-box;
+        margin: auto;
+        height: 150%;
+        width: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: black;
+        color: white;
+        /* opacity: 50%; */
+    }
+    .table{
+        box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+        border-spacing: 0 15px;
+        max-height: 90%;
+    }
+    .table-head *{
+        /* border: 2px solid orangered; */
+        opacity: 100%;
+        border-collapse: collapse;
+        position: sticky;
+        top: 0;
+        background-color: rgb(241,142,0);
+        color: black;
+        font-weight:500;
+        font-size: 30px;
+    }
+    .cl1{
+        width: 40%;
+    }
+    .cl2 , .cl3 , .cl3 , .cl4 , .cl5 , .cl6{
+        width: auto;
+
+    }
+    .span{
+        font-size: 28px;
+    }
+    .total{
+        /* position: absolute; */
+        /* margin: auto; */
+        width: 100%;
+        padding: 5px;
+        bottom: 0;
+        text-align: center;
+        background-color: rgb(241,142,0);
+        font-weight: 500;
+    }
+    .l1{
+        width: 43%;
+        font-weight: 600;
+    }
+    h2, input{
+        /* position: absolute; */
+        margin: auto;
+        color: rgb(241,142,0);
+        background-color: white;
+        text-align: center;
+        border: 5px solid black;
+        border-radius: 1.25rem;
+        width: 50%;
+        margin-top: 2%;
+    }
+    input{
+        margin-top: -2%;
+        /* margin-left: 10%; */
+        width: 60%;
+        height: 50px;
+        font-family: "Ubuntu";
+        font-size: 30px;
+        margin-left: 8%;
+        /* font-weight: 600; */
+    }
+    #submit{
+        display: none;
+    }
+
+    #gram{
+        display: none;
+    }
+    .about{
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    color: black;
+    background-size: cover;
+    font-family: "Ubuntu";
+    z-index: -1;
+    }
+    .about-text{
+        padding-top: 5%;
+        font-size: 30px;
+        font-weight: 600;
+        margin-left: 10%;
+        margin-right: 10%;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+
+    }
+    .about span{
+        font-size: 40px;
+        color: orangered;
+    }
+    .about img{
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        top: 5%;   
+        left: 50%;
+        transform: translate(-50%, 0%);
+        filter: grayscale(100%) blur(3px) ;
+        z-index: -1;
+    }
+    .hide{
+        display: none;
+    }
+    .span2{
+        color: black;
+        font-size: 25px;
+    }
+    </style>
+</head>
+<body>
+    <header class="head">
+        <div class="nav">
+            <a href="../home.html">Home</a>
+            <a href="./Healthy meter.html" style="border-bottom: 5px solid orangered;">Healthy Meter</a>
+            <a href="./BMI.html">BMI</a>
+            <a href="./recipe.html">Recipes</a>
+
+            <a href="#about">About</a>
+        </div>
+        <div class="logo">
+            <img src="../Images/Weigh to GO logo.png" alt="">
+        </div>
+        <div class="line"></div>
+    </header>
+    
+    <div class="sep-line"></div>
+
+    
+    
+    <div class="container">
+        <div class="addItem">
+            <!-- <button onclick="showItems()" class="plus">Add Item</button> -->
+            <div class="content"></div>
+            <form id="form1" onsubmit="submitForm(event)">
+                <input type="text" placeholder="Enter the name and press ENTER to search :)"  autocomplete="off" name="" id="name">
+                <input type="submit" id="submit"  >
+            </form>
+            <form onsubmit="form2(event)">
+                <input type="text" placeholder="Enter the serving in grams(g)" autofocus="true"  autocomplete="off" name="" id="gram">
+                <input type="submit" id="submit"  >                
+            </form>
+        </div>
+        <div class="hide">
+            <div class="window">
+                <table class="table">
+                    <tr class="table-head">
+                        <th class="cl1">Name</th>
+                        <th class="cl2">Calories</th>
+                        <th class="cl3">Carb</th>
+                        <th class="cl4">Protein</th>
+                        <th class="cl5">Fats</th>
+                        <th class="cl6">Serving</th>
+                    </tr>
+                </table>
+            </div>
+            <table class="total">
+                <tr>
+                    <td class="l1">TOTAL</td>
+                    <td class="l2"></td>
+                    <td class="l3"></td>
+                    <td class="l4"></td>
+                    <td class="l5"></td>
+                    <td class="l6"></td>
+                </tr>
+            </table>
+            <h2 id="meterr" ><span class="span"></span></h2>
+            <h2 id="meterr" ><span class="span2"></span></h2>
+        </div>
+        <br>
+    </div>
+            <!-- About -->
+        <article  id="about" class="about ">
+            <img src="../Images/Weigh to GO logo.png" alt="">
+            <div class="about-text">
+                Developed by , <span> Harsh Kumar </span> of B.Voc AI&Rob (2nd Year), this project was a step towards helping people get better health !
+            </div>
+        </article>
+<script src="../script.js"></script>
+</body>
+</html>

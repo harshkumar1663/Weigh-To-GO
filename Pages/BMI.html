@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Varela+Round&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sep-line {
+            height: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-family: 'Ubuntu', sans-serif;
+            ;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 20px;
+            transition: all 0.5s linear;
+            padding: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .healthy:hover {
+            color: black;
+            background-color: white;
+            transition: all 0.5s linear;
+        }
+
+        a:hover {
+            color: black;
+            background-color: white;
+            transition: all 0.5s linear;
+        }
+
+        .head {
+            position: relative;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 100%), url("../Images/food_head.jpg");
+            background-position: -20px -400px;
+            width: 100%;
+            height: 65vh;
+            background-size: cover;
+        }
+
+        .nav {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 0px;
+            width: 60vw;
+        }
+
+        .logo img {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: 22%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            filter: brightness(110%);
+            filter: contrast(200%);
+        }
+
+        .container {
+            background: url("../meter_photos/meter_bg.jpg");
+            width: 100%;
+            height: 60vh;
+            padding-top: 100px;
+            background-size: cover;
+            font-family: "Varela Round";
+            font-size: 25px;
+            background-position: 0px -180px;
+        }
+
+        .window {
+            justify-content: center;
+            align-content: center;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            margin: 0 100px;
+        }
+
+        input {
+            height: 40px;
+            border: 3px solid black;
+            border-radius: 1.25rem;
+            background-color: white;
+            color: black;
+            padding: 5px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        button {
+            height: 60px;
+            width: 220px;
+            border: 2px solid black;
+            border-radius: 1.25rem;
+            background-color: white;
+            color: black;
+            padding: 5px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        button:active {
+            background-color: rgb(241, 142, 0);
+        }
+
+        h2 {
+            color: rgb(241, 142, 0);
+            font-family: "Ubuntu";
+            text-align: center;
+            font-size: 30px;
+        }
+
+        #state {
+            /* margin-left: 450px; */
+            color: black;
+            margin: 100px auto 0 auto;
+            width: 30%;
+            text-align: center;
+            background-color: white;
+            border-radius: 1rem;
+            font-size: 35px;
+            font-weight: bolder;
+        }
+
+        #state2 {
+            padding: 20px;
+        }
+
+        .about {
+            position: relative;
+            width: 100%;
+            height: 55vh;
+            color: black;
+            background-size: cover;
+            font-family: "Ubuntu";
+            z-index: -1;
+        }
+
+        .about-text {
+            padding-top: 5%;
+            font-size: 30px;
+            font-weight: 600;
+            margin-left: 10%;
+            margin-right: 10%;
+            letter-spacing: 1px;
+            word-spacing: 2px;
+
+        }
+
+        .about span {
+            font-size: 40px;
+            color: orangered;
+        }
+
+        .about img {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            filter: grayscale(100%) blur(3px);
+            z-index: -1;
+        }
+
+        #weight,
+        #height {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="head">
+        <div class="nav">
+            <a href="../home.html">Home</a>
+            <a href="./Healthy meter.html">Healthy Meter</a>
+            <a href="./BMI.html" style="border-bottom: 5px solid orangered;">BMI</a>
+            <a href="./recipe.html">Recipes</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="logo">
+            <img src="../Images/Weigh to GO logo.png" alt="">
+        </div>
+        <div class="line"></div>
+    </header>
+
+    <div class="sep-line"></div>
+
+    <div class="container">
+        <div class="window">
+            <form action="" onsubmit="getWeight(event)">
+                <input id="weight" type="number" placeholder="Weight in kg" name="" id="weight">
+                <!-- <input type="submit" hidden value=""> -->
+            </form>
+            <form action="" onsubmit="getHeight(event)">
+                <input id="height" type="text" placeholder="Height in cm" name="" id="height">
+                <!-- <input type="submit" hidden value=""> -->
+            </form>
+            <button id="btn">Calculate !</button>
+            <h2 id="final"></h2>
+        </div>
+        <p id="state"></p>
+        <h2 id="state2"></h2>
+    </div>
+
+    <!-- About -->
+    <article id="about" class="about hide">
+        <img src="../Images/Weigh to GO logo.png" alt="">
+        <div class="about-text">
+            Developed by , <span> Harsh Kumar </span> of B.Voc AI&Rob (2nd Year), this project was a step towards
+            helping people get better health !
+        </div>
+    </article>
+
+    <script>
+        const btn = document.getElementById("btn")
+        const heightForm = document.getElementById("height")
+        const weightForm = document.getElementById("weight")
+        const show = document.getElementById("final")
+        const state = document.getElementById("state")
+        const state2 = document.getElementById("state2")
+
+        btn.addEventListener('click', function () {
+            weight = weightForm.value
+            height = heightForm.value / 100
+            bmi = (Math.round((weight / (height ** 2)) * 100) / 100)
+            show.style.border = "5px solid black"
+            show.innerHTML = bmi
+            if (bmi < 18.5) {
+                state.innerHTML = "UnderWeight"
+                state2.innerHTML = "You need to gain Weight"
+            } else if (bmi < 25) {
+                state.innerHTML = `Normal <span style="font-size:20px;"> (Healthy) </span>`
+                state2.innerHTML = "Your Weight is fine !"
+            } else if (bmi < 30) {
+                state.innerHTML = "Overweight"
+                state2.innerHTML = "You need to loose a little bit of weight"
+            } else {
+                state.innerHTML = "Obese"
+                state2.innerHTML = "You need to loose a lot of weight"
+            }
+            // alert(Math.round(bmi * 100) / 100)
+        })
+
+
+        function getWeight(event) {
+            event.preventDefault()
+        }
+        function getHeight(event) {
+            event.preventDefault()
+        }
+    </script>
+</body>
+
+</html>

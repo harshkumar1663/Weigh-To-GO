@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&family=Varela+Round&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sep-line {
+            height: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-family: 'Ubuntu', sans-serif;
+            ;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 20px;
+            transition: all 0.5s linear;
+            padding: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        a:hover {
+            color: black;
+            background-color: white;
+            text-decoration: none;
+            transition: all 0.5s linear;
+        }
+
+        .head {
+            position: relative;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 100%), url("../Images/food_head.jpg");
+            background-position: -20px -400px;
+            width: 100%;
+            height: 65vh;
+            background-size: cover;
+        }
+
+        .nav {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 0px;
+            width: 60vw;
+        }
+
+        .logo img {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: 22%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            filter: brightness(110%);
+            filter: contrast(200%);
+        }
+        .container{
+            min-height: 50vh;
+        }
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            flex-flow: row wrap;
+        }
+
+        .card {
+            position: relative;
+            width: 18rem;
+            /* min-height: 27rem; */
+            margin: 20px;
+            transition: all 0.2s;
+            font-family: "Varela Round";
+        }
+
+        h5 {
+            font-family: "Ubuntu";
+            font-weight: 600;
+        }
+
+        .card p {
+            display: none;
+            transition: all 0.2s;
+        }
+
+        .card:hover p {
+            display: block;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            width: 24rem;
+            transition: all 0.25s linear;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: black;
+            border: 2px solid rgb(241, 142, 0);
+            border-radius: 1.25rem;
+            transition: all 0.3s linear;
+        }
+
+        .btn-primary:hover {
+            background-color: rgb(241, 142, 0);
+            border: 2px solid rgb(241, 142, 0);
+            transition: all 0.3s linear;
+        }
+
+        .form-control {
+            color: rgb(241, 142, 0);
+            border: 0.14rem solid black;
+            height: 3rem;
+            padding: 20px;
+            font-size: 25px;
+            border-radius: 1.25rem;
+        }
+
+        .btn-outline-secondary {
+            border-right: 2px solid black;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            border-left: none;
+            font-size: 20px;
+            border-radius: 1.25rem;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: rgb(241, 142, 0);
+            color: black;
+            border-right: 2px solid black;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            border-left: none;
+        }
+
+        .form-control:active {
+            color: rgb(241, 142, 0);
+        }
+        .form-control:focus{
+            border-color: rgb(241, 142, 0);
+            box-shadow:  0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(241, 142, 0 , 1);;
+        }
+
+        .about {
+            position: relative;
+            width: 100%;
+            height: 55vh;
+            color: black;
+            background-size: cover;
+            font-family: "Ubuntu";
+            z-index: -1;
+        }
+
+        .about-text {
+            padding-top: 5%;
+            font-size: 30px;
+            font-weight: 600;
+            margin-left: 10%;
+            margin-right: 10%;
+            letter-spacing: 1px;
+            word-spacing: 2px;
+
+        }
+
+        .about span {
+            font-size: 40px;
+            color: orangered;
+        }
+
+        .about img {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            filter: grayscale(100%) blur(3px);
+            z-index: -1;
+        }
+        .cont{
+            display: flex;
+            justify-content: space-around;
+        }
+        .hide{
+            display: none;
+        }
+        .form-check-input{
+            margin-top: 5px;
+            width: 15px;
+            height: 15px;
+        }
+        label{
+            font-family: "Varela Round";
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="head">
+        <div class="nav">
+            <a href="../home.html">Home</a>
+            <a href="./Healthy meter.html">Healthy Meter</a>
+            <a href="./BMI.html">BMI</a>
+            <a href="./recipe.html" style="border-bottom: 5px solid orangered;">Recipes</a>
+            <a href="#about">About</a>
+        </div>
+        <div class="logo">
+            <img src="../Images/Weigh to GO logo.png" alt="">
+        </div>
+        <div class="line"></div>
+    </header>
+
+    <div class="sep-line"></div>
+
+    <div class="container">
+        <!-- input -->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Food name / Category" aria-label="Recipient's username"
+                aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Search</button>
+            </div>
+        </div>
+        <!-- buttons -->
+        <div class="buttons">
+            <div class="form-check form-switch cont">
+                <div>
+                    <input onclick="check()" class="form-check-input form-protien" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label prot" for="flexSwitchCheckDefault">Min. Protien ?</label>
+                    <!-- input field -->
+                    <div class="field prot-hide hide">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control protien" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input onclick="check()" class="form-check-input form-fat" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label fats" for="flexSwitchCheckDefault">Min. Fat ?</label>
+                    <!-- input field -->
+                    <div class="field fat-hide hide">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control fat" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input onclick="check()" class="form-check-input form-carb" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label carbs" for="flexSwitchCheckDefault">Min. Carbs ?</label>
+                    <!-- input field -->
+                    <div class="field carb-hide hide">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control carb" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input onclick="check()" class="form-check-input form-veg" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label veg" for="flexSwitchCheckDefault">Only Veg?</label>
+                    <!-- input field -->
+                    <div class="field prot-hide hide">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- cards -->
+        <div class="card-container">
+
+        </div>
+    </div>
+
+    <!-- About -->
+    <article id="about" class="about ">
+        <img src="../Images/Weigh to GO logo.png" alt="">
+        <div class="about-text">
+            Developed by , <span> Harsh Kumar </span> of B.Voc AI&Rob (2nd Year), this project was a step towards
+            helping people get better health !
+        </div>
+    </article>
+    <script>
+
+        // form variable
+        p = false
+        f = false
+        c = false
+        v = false
+
+        // API variables
+        let APP_ID = "4f545353";
+        let API_KEY = "109bd298ef301c5c08b72f7df0196ee4";
+        const name = document.querySelector(".form-control")
+        
+        function check(){
+            // protien button
+            if(document.querySelector(".form-protien").checked == true){
+                document.querySelector(".prot-hide").style.display = "block"
+                p = true
+            }
+            else{
+                document.querySelector(".prot-hide").style.display = "none"
+                p = false
+            }
+
+            // fats buttons
+            if(document.querySelector(".form-fat").checked == true){
+                document.querySelector(".fat-hide").style.display = "block"
+                f = true
+            }
+            else{
+                document.querySelector(".fat-hide").style.display = "none"
+                f = false
+            }
+            if(document.querySelector(".form-carb").checked == true){
+                document.querySelector(".carb-hide").style.display = "block"
+                c = true
+            }
+            else{
+                document.querySelector(".carb-hide").style.display = "none"
+                c = false
+            }
+            if(document.querySelector(".form-veg").checked == true){
+                v = true
+            }
+            else{
+                v = false
+            }
+        }
+        const inp_btn = document.querySelector(".btn-outline-secondary")
+        inp_btn.addEventListener('click', function () {
+            console.log("API called")
+            sendReq()
+        })
+        async function sendReq() {
+
+            
+            var req = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${name.value}&to=100`
+            if(v == true)
+                req += `&health=vegetarian`
+            if(p == true)
+                req += `&nutrients%5BPROCNT%5D=${document.querySelector(".protien").value}%2B`
+            if(f == true)
+                req += `&nutrients%5BFAT%5D=${document.querySelector(".fat").value}%2B`
+            if(c == true)
+                req += `&nutrients%5BCHOCDF%5D=${document.querySelector("carb").value}%2B`
+
+            try{
+                let response = await fetch(req);
+                console.log("API Returned")
+                let data = await response.json()
+                console.log(data)
+                showCards(data)
+                }   
+            catch(response){
+                console.warn("Not in the database")
+            }
+            
+                
+        }
+        async function showCards(data) {
+            const window = document.querySelector(".card-container");
+            window.innerHTML = ""
+            console.log(data.count)
+            if (data.count != 0)
+                {
+                    
+                        for (let i = 0; i < data.count; i++)
+                        {
+                            card = document.createElement("recipe-card");
+                            card.innerHTML = `<div class="card" >
+                                <img class="card-img-top" src="${data.hits[i].recipe.image}" alt="Card image cap">
+                                <div class="card-body">
+                                <h5 style="color:rgb(241, 142, 0)" class="card-title">${data.hits[i].recipe.label}</h5>
+                                <p>
+                                    <p class="card-text">${data.hits[i].recipe.ingredientLines}</p>
+                                    <h6  class="card-text">
+                                        Protiens : ${Math.round(data.hits[i].recipe.digest[2].total* 100) / 100 } <br>
+                                        Fats : ${Math.round(data.hits[i].recipe.digest[0].total* 100) / 100 }  <br>
+                                        Carbs : ${Math.round(data.hits[i].recipe.digest[1].total* 100) / 100 }  
+                                        </h6>
+                                </p>
+                                <a href="${data.hits[i].recipe.url}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Go to Recipe !</a>
+                                </div>
+                            </div>`
+                            window.appendChild(card)
+                        }
+                    }
+                   
+                
+            else
+                {
+                    alert("Requested Item not in the database")    
+                }
+        }
+
+
+    </script>
+</body>
+
+</html>
